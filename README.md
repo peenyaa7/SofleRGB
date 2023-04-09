@@ -1,5 +1,9 @@
 # Hola! 👋
 
+![](https://img.shields.io/badge/Status-Work%20in%20progress-yellow) ![](https://img.shields.io/badge/Version-0.1.0-blue)
+
+![Sofle Keyboard](./imgs/Header.jpg)
+
 > Si es la primera vez que visitas este repo (o no lo es) y esta guía te está ayudando de alguna manera, no olvides darle una estrellita ⭐ para consultarla en futuras ocasiones
 
 🚧 Actualmente la guía está en construcción, y se irá ampliando conforme vaya teniendo más tiempo.
@@ -20,6 +24,8 @@ Durante el proceso iré adjuntando diferentes links que son de gran utilidad y q
 - [Configurador de QMK (con el layout del Sofle)](https://config.qmk.fm/#/sofle/rev1/LAYOUT)
 - [Gerbers de la PCB](https://github.com/josefadamcik/SofleKeyboard/tree/master/Gerbers/RGB)
 - [Guía visual de soldadura]()
+
+- [Tamaños de los componentes SMD]()
 
 🚧 ...
 
@@ -76,9 +82,9 @@ Hay dos formas de montar el teclado:
 
 - **La segura**: Consiste en soldar primero los componentes imprescindibles (switches, diodos, Pro Micro, etc) y luego soldar los componentes opcionales (pantalla OLED, encoders, LEDs, etc). De esta forma puedes comprobar en todo momento que todo funciona correctamente. Es más dificil de soldar por que el promicro estorba desde el principio, pero es la forma más segura de montar el teclado.
 
-    1. Soldamos los componentes imprescindibles (`diodos, socket header, promicro`) y comprobamos que todo funciona correctamente.
+    1. Soldamos los componentes imprescindibles (`diodos, socket header, promicro`), instalamos el firmware y comprobamos que todo funciona correctamente.
 
-    2. Soldamos los componentes opcionales (`pantalla OLED, encoders, LEDs, etc`). En este paso es muy importante comprobar que todo funciona correctamente cada vez que soldamos un componente nuevo (sobre todo en el caso de los LEDs, que recomiendo ir comprobando cada vez que soldamos un LED nuevo)
+    2. Soldamos los componentes opcionales (`pantalla OLED, encoders, LEDs, etc`) y, por cada componente soldado, comprobamos que todo sigue funcionando correctamente (sobre todo en el caso de los LEDs, que recomiendo ir comprobando cada vez que soldamos un LED nuevo)
 
 - **La cómoda**: Consiste en soldar los componentes de forma que la soldadura sea lo más sencilla posible. De esta forma, puedes soldar los componentes opcionales sin tener que soldar el promicro. Es menos dificil de soldar, pero puede dar verdaderos dolores de cabeza en caso de error.
 
