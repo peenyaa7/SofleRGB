@@ -23,9 +23,9 @@ Durante el proceso iré adjuntando diferentes links que son de gran utilidad y q
 - [Documentación de QMK](https://docs.qmk.fm/#/)
 - [Configurador de QMK (con el layout del Sofle)](https://config.qmk.fm/#/sofle/rev1/LAYOUT)
 - [Gerbers de la PCB](https://github.com/josefadamcik/SofleKeyboard/tree/master/Gerbers/RGB)
-- [Guía visual de soldadura]()
-
-- [Tamaños de los componentes SMD]()
+- [Guía visual de buenas prácticas en soldadura](https://hacedores.com/13-problemas-de-soldadura-de-pcbs/)
+- [Tamaños de los componentes SMD](https://eulerprecision.com/es/nuestra-tarjeta-de-visita-para-ingenieros/)
+- [Hex: Via]()
 
 🚧 ...
 
@@ -60,7 +60,7 @@ Los componentes que he utilizado son los siguientes:
 | 9 | Si | *1x* Cable USB C | 4€ | [Link](https://es.aliexpress.com/item/1005003776565766.html) | No es necesario adquirir un cable USB C super especial. Cualquier cable USB C que tengas por casa te servirá. |
 | 10 | Si | *2x* Conector TRRS | 0'54€ | [Link](https://es.aliexpress.com/item/33029465106.html) | Precio de la conjunta |
 | 11 | Si | *1x* Cable TRRS | 1'43€ | [Link](https://es.aliexpress.com/item/4000104350398.html) | Precio de la conjunta |
-| 12 | Si | *58x* Diodos 1N4148W | 0'92€ | [Link](https://es.aliexpress.com/item/1005004617332808.html) | Precio de la conjunta |
+| 12 | Si | *60x* Diodos 1N4148W | 0'92€ | [Link](https://es.aliexpress.com/item/1005004617332808.html) | Precio de la conjunta |
 | 13 | Si | *2x* Botón reset | 0'33€ | [Link](https://es.aliexpress.com/item/32976590241.html) | Precio de la conjunta |
 | 14 | Si | *28x* Tornillo M2 (3mm) | 0'66€ | [Link](https://es.aliexpress.com/item/32810852732.html) | Precio de la conjunta |
 | 15 | Si | *14x* Separador M2 (7mm) | 0'95€ | [Link](https://es.aliexpress.com/item/1005004286356432.html) | Pedido en AliExpress. Venían 50 unidades |
@@ -94,35 +94,166 @@ En mi caso, he seguido la segunda forma, ya que era la primera vez que soldaba y
 
 ## 1.- Diodos
 
-<!-- Foto del pad -->
+![Componente: Diodo](./imgs/Diode_1.jpg)
 
-<!--
-- Aplicar soldadura en uno de los pines del diodo
-- Soldar el diodo únicamente con el pin que hemos soldado
-- Aplicar soldadura en el otro pin del diodo
--->
+Los diodos van soldados en la parte inferior de cada parte (la parte que está mirando a la mesa). Hay que tener en cuenta que los diodos tienen una posición correcta, ya que si se colocan al revés, no funcionarán correctamente. En la siguiente imagen se puede ver la posición correcta de los diodos:
+
+En la placa, en cada posición de diodo, hay una pequeña marca que indica la posición correcta del diodo:
+
+<!-- TODO: Foto de la placa con las marcas de los diodos -->
+
+En la guía oficial aparece que son necesarios 58 diodos, pero en mi caso he utilizado 60 diodos (30 en cada mitad), no se si esto es un error de la guía oficial.
+
+Cómo consejo, recomiendo separar 30 diodos por mitad antes de comenzar a soldar, ya que es muy fácil confundirse y soldar un diodo de menos o de más.
+
+### Proceso de soldadura
+
+Los diodos son muy sencillos de soldar. El proceso es el siguiente:
+
+1. Aplicar soldadura en uno de los pines del diodo
+2. Soldar el diodo únicamente con el pin que hemos soldado (lo más recto posible)
+3. Aplicar soldadura en el otro pin del diodo
+
 
 🚧 ...
 
 ## 2.- LEDs
 
+> ⚠️ **Nota**: Este teclado permite **no** utilizar LEDs si así se desea. Si este es tu caso, ver al apartado [Puentes LEDs](#puentes-leds) directamente.
+
+El Sofle RGB utiliza LEDs con el siguiente esquema de conexiones:
+
+![Sofle LEDs](./imgs/SK6812mini.jpg)
+
 <!-- Fotos de los pads -->
 
-Hay 3 tipos de montaje para los LEDs:
+El Sofle RGB tiene 3 "tipos de LEDs":
 
-- **LEDs solda 
+- **LED indicador**: Hay 1 por cada mitad. Se situa en la parte superior de la PCB, justo al lado del TRRS. En mi caso es optado por no utilizarlo, ya que no lo veo necesario (toda la información que ofrece me la puede ofrecer la pantalla OLED).
 
-<!--
-- Aplicar soldadura en uno de los pines del LED
-- Soldar el LED únicamente con el pin que hemos soldado
-- Aplicar soldadura en los demás pines del LED
--->
+- **LEDs underglow**: Hay 6 por cada mitad. Se situan en la parte inferior de la PCB. Tienen un montaje superficial, lo que hace más complicado el proceso de soldadura.
+
+- **LEDs backlight**: Hay 29 por cada mitad. Se situa en los huecos de la PCB, justo debajo de cada switch. Tienen un montaje incrustado, lo que facilita el proceso de soldadura.
+
+> ℹ️ En la guía oficial aparece que son necesarios 58 LEDs, pero en mi caso he utilizado 60 LEDs (30 en cada mitad), no se si esto es un error de la guía oficial.
+
+
+### Antes de soldar (a tener en cuenta)
+
+Este apartado lo considero muy importante, ya que es muy fácil cometer errores al soldar los LEDs. Por ello, recomiendo leerlo detenidamente antes de comenzar a soldar.
+
+A tener en cuenta:
+
+- Es muy importante verificar, antes de soldar un LED, que este se encuentra en la posición correcta. Créeme, es muy fácil confundirse pensar que un LED está en la posición correcta cuando en realidad no lo está.
+- Los LEDs son muy sensibles a la temperatura, es muy fácil quemarlos si no se tiene cuidado (una temperatura de 240/260ºC es sufuciente)
+- En ocasiones, un LED puede llegar con dos esquinas rotas y confundir dicha esquina con la muesca del LED. Es recomendable no utilizar este tipo de LEDs si tenemos LEDs de sobra.
+
+> 🚨 **Importante**: La marca de la PCB (silk screen) se refiere al pin DOUT del LED. No tiene por qué coincidir con la muesca del LED (de hecho, no coincide en mi caso).
+
+### Proceso de soldadura (backlight/per-key/in-switch)
+
+Estos LEDs son los que están situados justo debajo de cada switch y son los que iluminan cada una de las teclas. Estos LEDs son los más fáciles de soldar, ya que no hay que sujetarlos (se encajan en el hueco de la PCB).
+
+El proceso de soldadura es el siguiente:
+
+1. Encajar el LED en el hueco de la tecla (aseguarse de que el LED está en la posición correcta)
+
+2. Aplicar suficiente soldadura en uno de los pads de la PCB y acto seguido, arrastrar la punta del soldador desde el pad con el estaño hasta el LED (sin soltar la punta del soldador).
+
+3. Pasar al siguiente LED y repetir el proceso. Es recomendable que solo hagamos un pad de cada LED, ya que si hacemos dos pads a la vez, es muy probable que se nos queme el LED. Una vez tengamos el primer pad de cada LED, podemos hacer el segundo pad de cada LED (en el mismo orden).
+
+### Proceso de soldadura (underglow)
+
+Estos LEDs son los que están situados en la parte inferior de la PCB y son los que iluminan el teclado por debajo. Estos LEDs son los más difíciles de soldar, ya que van soldador en la superficie inferior de la PCB y hay que sujetarlos con una pinza.
+
+El proceso de soldadura es el siguiente:
+
+1. Soldar uno de los pads de la PCB
+2. Sujetar el LED con una pinza en la posición correcta (asegurarse de que las demás patas del LED coinciden con los demás pads de la PCB)
+3. Volver a aplicar calor en el pad con estaño de la PCB y unir el LED a la PCB
+4. Repetir el proceso para los demás LEDs (soldar solo un pad de cada LED)
+5. Una vez tengamos todos los pads de los LEDs soldados, volver a soldar los demás pads de los LEDs (en el mismo orden)
+
+> ℹ️ **Pro tip**
+>
+> Si el primer pad que soldamos en cada uno de los LED es el pad DOUT, nos estamos asegurando de que, si en un futuro, un LED no enciende correctamente, se debe al pin DIN del LED que no funciona correctamente.
+
+### Puentes LEDs
+
+El Sofle RGB permite decidir si queremos LEDs o no. Y en caso de querer LEDs, podemos decidir si queremos LEDs backlight o LEDs underglow. Por lo tanto, en la PCB hay puentes que nos permiten decidir si queremos o no queremos LEDs.
+
+El objetivo de este documento no es hacer una guía universal para cualquier tipo de configuración de LEDs, sino que se centra en la configuración que yo he utilizado en mi teclado. Por lo tanto, si tienes una configuración distinta a la mía, te recomiendo que leas le guía oficial.
+
+Aun así, explicaré brevemente las distintas opciones de configuración de LEDs que hay en la PCB.
+
+---
+
+![Puentes LEDs](./imgs/PuentesLEDs.jpg)
+
+En la PCB hay 3 puentes que nos permiten decidir si queremos o no queremos LEDs:
+
+- **Indicator bypass (j6)**: Se situa justo al lado del Promicro. Siempre debe ser soldado (excepto si no queremos ningún LED en nuestro sofle). Con este puente indicamos si queremos o no queremos el LED indicador.
+
+- **Light Selector (j4)**: Se situa en el centro de la PCB. Con este puente indicamos si queremos o no queremos LEDs underglow.
+
+- **Backlight Enable (j5)**: Se situa en el centro de la PCB. Con este puente indicamos si queremos o no queremos LEDs backlight. Este puente no es necesario que sea soldado si no tenemos LEDs underglow.
+
+A continuación, dejo una tabla con las conexiones que se deben hacer en cada uno de los puentes según la configuración de LEDs deseada:
+
+| ¿Quiere LED indicador? | ¿Quiere LED underglow? | ¿Quiere LED backlight? | Puente J6 | Puente J4 | Puente J5 | |
+|:----------------------:|:----------------------:|:----------------------:|:------------------------:|:-----------------------:|:-------------------------:| --- |
+| ❌ | ❌ | ❌ | --- | --- | --- | |
+| ❌ | ❌ | ✅ | 1-2 | 1-2 | --- | |
+| ❌ | ✅ | ❌ | 1-2 | 2-3 | --- | |
+| ❌ | ✅ | ✅ | 1-2 | 2-3 | 2-3 | ⬅️ |
+| ✅ | ❌ | ❌ | 2-3 | --- | --- | |
+| ✅ | ❌ | ✅ | 2-3 | 1-2 | --- | |
+| ✅ | ✅ | ❌ | 2-3 | 2-3 | --- | |
+| ✅ | ✅ | ✅ | 2-3 | 2-3 | 1-2 | |
+
+En mi caso particular, he decidido que **no** quiero LEDs indicadores, quiero **si** LEDs underglow y **si** quiero LEDs backlight (configuración marcada con una flecha en la tabla anterior). Por lo tanto, he soldado los pines **1-2 de J6**, los pines **2-3 de J4** y los **pines 2-3 de J5** (tal y como se pueden ver en la foto de arriba).
+
+> ℹ️ **Pro tip**
+>
+> Recomiendo utilizar un trozo de alambre cortado a la medida (con forma de U) para realizar las conexiones en cada uno de los puentes. Esto nos permitirá hacer conexiones más limpias, más fáciles y más seguras.
+
 
 ## 3.- Kailh Hotswap
+
+Este componente es el que nos permite poner y quitar los switches de nuestro teclado tantas veces queramos sin tener que soldarlos. Se situa justo donde van colocados los switches, y son soldados en la parte inferior de la PCB (la parte que estará mirando a la mesa cuando tengamos el teclado montado).
+
+Son muy fáciles de soldar, ya que no se trata de un componente electrónico y tiene una gran superficie de contacto con la PCB.
+
+El proceso de soldadura de cada Hotswap es el siguiente:
+
+1. Aplicar estaño a un pad de la PCB
+2. Colocar el Hotswap en la posición correcta (asegurarse de que las demás patas del Hotswap coinciden con los demás pads de la PCB)
+3. Apretar con la punta del soldador en el pad que hemos aplicado estaño hasta que se funda con el estaño de la PCB
+4. Aplicar suficiente estaño en la otra pata del hotswap, hasta que el estaño fije la patita del hotswap en la PCB
+
+> ⚠️ **Atención**: Es muy fácil confundirse con la colocación de este componente, ya que la PCB es reversible y por tanto, tiene dos posiciones posibles. Por este motivo recomiendo que se verifique antes de ser soldado.
+>
+> A continuación, un pequeño esquema de como colocar el componente y para que sirve cada agujero:
+>
+> ![Colocación Hotswap](./imgs/ColocacionHotswap.jpg)
 
 <!-- Foto del pad -->
 
 ## 4.- Reset
+
+El botón de reset no es un componente obligatorio, pero si recomiendo mucho tenerlo (sobretodo si nunca hemos tenido un teclado como este o nunca hemos configurado QMK). Este botón nos permite entrar en modo RESET para poder cargar nuestros propios firmwares en el teclado.
+
+Cada mitad del Sofle RGB requiere de 1 botón de reset. Se situa en la parte superior de la PCB, justo encima del TRRS.
+
+Es un componente muy sencillo de soldar, pero es muy probable que se quede torcido si no se hace con cuidado. Si se queda torcido no ocurre nada, pero no se queda todo lo bonito que podría quedar.
+
+Recomiendo seguir los siguientes pasos para soldar el botón de reset:
+
+1. Doblar las patas del botón de reset hacia abajo, para que se quede lo más anclado posible a la PCB.
+2. Sujetar el botón de reset con cualquier pinza que nos permita soldarlo sin esfuerzo extra (una pinza de la ropa puede ser suficiente)
+3. Soldamos unas de las patas del botón de reset
+4. Quitamos la pinza y soldamos la otra pata del botón de reset
+5. (Opcional) Le damos la vuelta a la PCB y aplicamos estaño extra a los mismos pads que hemos soldado anteriormente para mayor anclaje.
 
 <!-- Foto del pad -->
 
