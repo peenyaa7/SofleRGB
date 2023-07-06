@@ -4,14 +4,23 @@
 
 ![Sofle Keyboard](./imgs/Header.jpg)
 
-> Si es la primera vez que visitas este repo (o no lo es) y esta guía te está ayudando de alguna manera, no olvides darle una estrellita ⭐ para consultarla en futuras ocasiones
+> Si es la primera vez que visitas este repo (o no lo es y esta guía te está ayudando de alguna manera), no olvides darle una estrellita ⭐ para consultarla en futuras ocasiones y ver cuanta gente la ha utilizado. ¡Gracias! ❤️
+
+## Tabla de contenidos
+
+- [Antes de empezar](#antes-de-empezar)
+  - [Recursos](#recursos)
+  - [Consejos](#consejos)
+- [Componentes](#componentes)
+
+
+# Antes de empezar
+
 
 🚧 Actualmente la guía está en construcción, y se irá ampliando conforme vaya teniendo más tiempo.
 Durante el proceso iré adjuntando diferentes links que son de gran utilidad y que otros compañeros del mundo del teclado han ido subiendo.
 
 🚨 **Quiero dejar claro que no soy para nada un experto en esto, no me hago responsable de absolutamente nada. Simplemente dejo esta guía por internet para ayudar a aquellos que están empezando en este mundo.**
-
-# Antes de empezar
 
 ## Recursos
 
@@ -245,11 +254,13 @@ El botón de reset no es un componente obligatorio, pero si recomiendo mucho ten
 
 Cada mitad del Sofle RGB requiere de 1 botón de reset. Se situa en la parte superior de la PCB, justo encima del TRRS.
 
+![Posición del botón RESET](./imgs/PosicionReset.png)
+
 Es un componente muy sencillo de soldar, pero es muy probable que se quede torcido si no se hace con cuidado. Si se queda torcido no ocurre nada, pero no se queda todo lo bonito que podría quedar.
 
 Recomiendo seguir los siguientes pasos para soldar el botón de reset:
 
-1. Doblar las patas del botón de reset hacia abajo, para que se quede lo más anclado posible a la PCB.
+1. Doblar las patas del botón de reset hacia abajo, de modo que se quede anclado a la PCB como si de una pinza se tratara (esto nos facilitará el soldado)
 2. Sujetar el botón de reset con cualquier pinza que nos permita soldarlo sin esfuerzo extra (una pinza de la ropa puede ser suficiente)
 3. Soldamos unas de las patas del botón de reset
 4. Quitamos la pinza y soldamos la otra pata del botón de reset
@@ -259,21 +270,127 @@ Recomiendo seguir los siguientes pasos para soldar el botón de reset:
 
 ## 5.- TRRS
 
+Este componente es el que nos permite conectar las dos mitades del teclado. Se situa en la parte superior de la PCB, justo al lado del botón de reset.
+
+![Posición del TRRS](./imgs/PosicionTRRS.png)
+
+Los TRRS son muy fáciles de soldar, ya que no se trata de un componente electrónico y tiene una gran superficie de contacto con la PCB. Aunque hay que tener en cuenta que, como la PCB es reversible, hay que soldarlos en la posición correcta. Fijaros como quedan totalmente opuestos:
+
+![Posición del TRRS](./imgs/PosicionTRRS2.png)
+
+El proceso de soldadura de cada TRRS es el siguiente:
+
+1. Colocar el TRRS en la posición correcta, es decir, verificar que todas las patas del TRRS se sitúan en los pads correctos de la PCB.
+2. Sujetar el TRRS con una pinza para que no se mueva, comprobando que no nos moleste la pinza para soldar.
+3. Soldar una de las patas del TRRS
+4. Quitar la pinza
+5. Soldar las demás patas del TRRS (aunque no sea un componente electrico, recomiendo soldar la siguiente pata más lejana a la que hemos soldado anteriormente, para evitar sobrecalentar el componente por esa zona)
+
 <!-- Foto del pad -->
 
+## X.- Puentes OLED
+
+Este paso es necesario hacerlo antes de soldar el promicro, ya que nos será mucho más fácil hacerlo ahora que cuando tengamos los sockets header del promicro soldados.
+
+Estos puentes se encuentran entre los pads del promicro y los pads de la pantalla OLED. De nuevo, como la PCB es reversible, estos puentes están tanto en la parte superior como en la parte inferior de la PCB, pero **ÚNICAMENTE** se deben soldar en el **LADO DONDE VAYA A IR COLOCADA LA PANTALLA OLED**.
+
+Adjunto una imagen donde se pueden ver los 4 puentes OLED de cada mitad soldados en la parte superior de la PCB:
+
+![Puentes OLED](./imgs/PuentesOLED.png)
+
 ## 6.- Socket Header (promicro)
+
+Este componente no es obligatorio, pero es extremadamente recomendable. Este componente nos permite conectar el promicro a la PCB sin tener que soldarlo. Esto nos permite poder cambiar el promicro en caso de que se estropee sin tener que desoldar nada.
+
+Los Socket Header del promicro se situan en la parte superior de la PCB, justo encima del TRRS. Son muy fáciles de soldar, ya que no se trata de un componente electrónico y tiene una gran superficie de contacto con la PCB.
+
+Aunque es muy fácil equivocarse con la posición de los Socket Header, ya que la PCB es reversible y por tanto, tiene dos posiciones posibles. Por este motivo recomiendo que se verifique antes de ser soldado (_es increible la de gente que se equivoca con esto..._).
+
+En la PCB se puede ver (mirando la parte superior de ambas PCBs) que hay una marca que indica la posición correcta de los Socket Header:
+
+![Posición de los Socket Header](./imgs/PosicionValidaSocketHeader.png)
+
+Al colocar los Socket Header, estos deben (por norma general) ocultar el dibujo de la PCB. Si no es así, verificar que los Socket Header están en la posición correcta. Una vez colocados deben quedar de la siguiente forma:
+
+![Posición de los Socket Header](./imgs/PosicionSocketHeader.png)
+
+El proceso de soldadura de cada Socket Header es el siguiente:
+
+1. En la parte superior, colocar el Socket Header en la posición correcta, es decir, verificar que todas las patas del Socket Header se sitúan en los pads correctos de la PCB.
+2. Sujetar el Socket Header con una pinza o celo para que no se mueva, comprobando que no nos moleste la pinza para soldar.
+3. En la parte inferior, soldar la primera y la última pata de cada Socket Header
+4. Quitar la pinza
+5. Soldar las demás patas del Socket Header (de nuevo, aunque no sea un componente electrico, recomiendo soldar la siguiente pata más lejana a la que hemos soldado anteriormente, para evitar sobrecalentar el componente por esa zona)
+
+Si observamos la parte inferior de la PCB, las soldaduras deben quedar fuera del dibujo de la PCB, como se puede ver en la siguiente imagen:
+
+![Posición de los Socket Header](./imgs/PosicionValidaSocketHeader2.png)
 
 <!-- Foto del pad -->
 
 ## 7.- Promicro
 
+El promicro es el componente que nos permite configurar el teclado. Se situa en la parte superior de la PCB, justo encima del TRRS y de los Socket Header.
+
+### Modificación Pin Header
+
+En mi caso me he visto obligado a modificar los Pin Header del promicro para que la pantalla OLED encaje correctamente. Para ello, he extraídos los pines del Pin Header y los he soldado directamente al promicro, evitando así el pequeño alzamiento que tienen los Pin Header.
+
+El proceso es sencillo:
+
+1. Extraer los pines del Pin Header
+    ![Pin Header modificado](./imgs/PinHeaderModificado.png)
+
+2. Colocar los pines en el Socket Header
+3. Colocar el promicro en el Socket Header (encajando todos los pines y en la posición correcta. En el paso 5 hay una imagen que indica la posición correcta del promicro)
+4. Soldar el primer y último pin del promicro
+5. Soldar los demás pines del promicro (al ser un componente electrónico delicado recomiendo soldar siempre la siguiente pata más lejana a la que hemos soldado anteriormente, para evitar sobrecalentar el componente por esa zona. Incluso puede ser interesante ir cambiando entre varios Socket Header para evitar sobrecalentar el promicro)
+    ![Posición Promicro](./imgs/PosicionPromicro.png)
+
+6. (Opcional) Cortar los pines que sobresalgan del promicro. En mi caso he decidido no hacerlo, ya que no me molestan y hacen que la pantalla OLED no se salga de la parte superior del promicro
+7. Extraer el promicro del Socket Header para que no nos moleste en el resto del proceso.
+
 <!-- Foto del pad -->
 
 ## 8.- Socket Header (OLED)
 
+Este componente nos permite conectar la pantalla OLED a la PCB sin tener que soldarla. Esto nos permite poder cambiar la pantalla OLED en caso de que se estropee sin tener que desoldar nada.
+
+Los Socket Header de la pantalla OLED se situan en la parte superior de la PCB, entre el promicro y el TRRS. Son muy fáciles de soldar, ya que no se trata de un componente electrónico y tiene una gran superficie de contacto con la PCB.
+
+Van soldados en la misma dirección que los Socket Header del promicro, es decir, en la parte superior de las PCBs.
+
+![Posición de los Socket Header](./imgs/PosicionSocketHeaderOLED.png)
+
+El proceso de soldadura de cada Socket Header es el siguiente:
+
+1. En la parte superior, colocar el Socket Header en la posición correcta, es decir, verificar que todas las patas del Socket Header se sitúan en los pads correctos de la PCB.
+2. Sujetar el Socket Header con una pinza o celo para que no se mueva, comprobando que no nos moleste la pinza para soldar.
+3. En la parte inferior, soldar la primera y la última pata de cada Socket Header
+4. Quitar la pinza o celo
+5. Soldar las demás patas del Socket Header
+
+Deben quedar de la siguiente forma:
+
+![Posición de los Socket Header](./imgs/PosicionSocketHeaderOLED2.png)
+
 <!-- Foto del pad -->
 
 ## 9.- OLED
+
+Este componente es el que nos permite ver información en el teclado de forma personalizada. Se situa en la parte superior de la PCB, justo encima del TRRS.
+
+Normalmente, al adquirir una pantalla OLED, esta viene con un pin header soldado. Si en tu caso no viene con un pin header soldado, puedes adquirir uno en cualquier tienda de electrónica y soldarlo tu mismo.
+
+![Pantalla OLED](./imgs/PantallaOLED.png)
+
+El proceso de soldadura de la pantalla OLED es el siguiente:
+
+1. Colocar Pin Header en la pantalla OLED (justo como en la imagen anterior)
+2. Sujetar Pin Header con una pinza o celo para que no se mueva, comprobando que no nos moleste la pinza para soldar.
+3. Soldar la primera y la última pata de cada Pin Header
+4. Quitar la pinza o celo
+5. Soldar las demás patas del Pin Header
 
 <!-- Foto del pad -->
 
