@@ -12,6 +12,36 @@
   - [Recursos](#recursos)
   - [Consejos](#consejos)
 - [Componentes](#componentes)
+- [Montaje](#montaje)
+  - [1.- Diodos](#1--diodos)
+  - [2.- LEDs](#2--leds)
+    - [Antes de soldar (a tener en cuenta)](#antes-de-soldar-a-tener-en-cuenta)
+    - [Proceso de soldadura (backlight/per-key/in-switch)](#proceso-de-soldadura-backlightper-keyin-switch)
+    - [Proceso de soldadura (underglow)](#proceso-de-soldadura-underglow)
+    - [Puentes LEDs](#puentes-leds)
+  - [3.- Kailh Hotswap](#3--kailh-hotswap)
+  - [4.- Reset](#4--reset)
+  - [5.- TRRS](#5--trrs)
+  - [6.- Puentes OLED](#6--puentes-oled)
+  - [7.- Socket Header (promicro)](#7--socket-header-promicro)
+  - [8.- Promicro](#8--promicro)
+    - [Modificación Pin Header](#modificaci%C3%B3n-pin-header)
+  - [9.- Socket Header (OLED)](#9--socket-header-oled)
+  - [10.- Pantalla OLED](#10--pantalla-oled)
+  - [XX.- Verificación de componentes](#xx--verificación-de-componentes)
+  - [11.- Encoders](#11--encoders)
+  - [12.- Plate superior y switches](#12--plate-superior-y-switches)
+  - [13.- Plate inferior (+ tornillos)](#13--plate-inferior--tornillos)
+  - [14.- Pata de goma](#14--pata-de-goma)
+  - [15.- Funda](#15--funda)
+- [Firmware (QMK)](#firmware-qmk)
+  - [Sin programación](#sin-programación)
+  - [Con programación](#con-programación) 
+- [Resolución de problemas](#resolución-de-problemas)
+  - [El promicro no se enciende](#el-promicro-no-se-enciende)
+  - [Solo funcionan algunos LEDs](#solo-funcionan-algunos-leds)
+
+  
 
 
 # Antes de empezar
@@ -114,8 +144,6 @@ En la placa, en cada posición de diodo, hay una pequeña marca que indica la po
 En la guía oficial aparece que son necesarios 58 diodos, pero en mi caso he utilizado 60 diodos (30 en cada mitad), no se si esto es un error de la guía oficial.
 
 Cómo consejo, recomiendo separar 30 diodos por mitad antes de comenzar a soldar, ya que es muy fácil confundirse y soldar un diodo de menos o de más.
-
-### Proceso de soldadura
 
 Los diodos son muy sencillos de soldar. El proceso es el siguiente:
 
@@ -288,7 +316,7 @@ El proceso de soldadura de cada TRRS es el siguiente:
 
 <!-- Foto del pad -->
 
-## X.- Puentes OLED
+## 6.- Puentes OLED
 
 Este paso es necesario hacerlo antes de soldar el promicro, ya que nos será mucho más fácil hacerlo ahora que cuando tengamos los sockets header del promicro soldados.
 
@@ -298,7 +326,7 @@ Adjunto una imagen donde se pueden ver los 4 puentes OLED de cada mitad soldados
 
 ![Puentes OLED](./imgs/PuentesOLED.png)
 
-## 6.- Socket Header (promicro)
+## 7.- Socket Header (promicro)
 
 Este componente no es obligatorio, pero es extremadamente recomendable. Este componente nos permite conectar el promicro a la PCB sin tener que soldarlo. Esto nos permite poder cambiar el promicro en caso de que se estropee sin tener que desoldar nada.
 
@@ -328,7 +356,7 @@ Si observamos la parte inferior de la PCB, las soldaduras deben quedar fuera del
 
 <!-- Foto del pad -->
 
-## 7.- Promicro
+## 8.- Promicro
 
 El promicro es el componente que nos permite configurar el teclado. Se situa en la parte superior de la PCB, justo encima del TRRS y de los Socket Header.
 
@@ -352,7 +380,7 @@ El proceso es sencillo:
 
 <!-- Foto del pad -->
 
-## 8.- Socket Header (OLED)
+## 9.- Socket Header (OLED)
 
 Este componente nos permite conectar la pantalla OLED a la PCB sin tener que soldarla. Esto nos permite poder cambiar la pantalla OLED en caso de que se estropee sin tener que desoldar nada.
 
@@ -376,7 +404,7 @@ Deben quedar de la siguiente forma:
 
 <!-- Foto del pad -->
 
-## 9.- OLED
+## 10.- Pantalla OLED
 
 Este componente es el que nos permite ver información en el teclado de forma personalizada. Se situa en la parte superior de la PCB, justo encima del TRRS.
 
@@ -392,7 +420,7 @@ El proceso de soldadura de la pantalla OLED es el siguiente:
 4. Quitar la pinza o celo
 5. Soldar las demás patas del Pin Header
 
-## X.- Verificación de componentes
+## XX.- Verificación de componentes
 
 Antes de continuar con el montaje, es muy recomendable verificar que todo está correctamente soldado. Para ello, instalaremos el firmware y comprobaremos que todo funciona correctamente.
 
@@ -400,7 +428,7 @@ Antes de continuar con el montaje, es muy recomendable verificar que todo está 
 
 Si todo funciona correctamente, podemos continuar con el montaje. Si algo no funciona correctamente, recomiendo revisar el apartado [Resolución de problemas](#resolución-de-problemas).
 
-## 10.- Encoders
+## 11.- Encoders
 
 Este componente nos añade funcionalidad extra al teclado. Además, no perdemos la pulsación ya que los encoders tienen pulsación. Se situa justo debajo del TRRS.
 
@@ -416,7 +444,7 @@ El proceso de soldadura de cada encoder es el siguiente:
 
 <!-- Foto del pad -->
 
-## 11.- Plate superior y Switches
+## 12.- Plate superior y Switches
 
 El siguiente paso es colocar la plate superior en la PCB junto a los switches.
 
@@ -436,20 +464,32 @@ El siguiente paso es colocar la plate inferior en la PCB junto a los separadores
 
 ## 14.- Pata de goma
 
+Las patas de gomas son las que nos permiten que el teclado no se mueva cuando lo utilizamos. No son obligatorias, pero si muy recomendables.
+
+Las puedes encontrar en cualquier bazar local de tu ciudad.
+
+La posición de las patas de goma es totalmente a gusto del consumidor, pero recomiendo colocar una en cada esquina y otra en mitad, quedando de la siguiente forma:
+
+![Posición de las patas de goma](./imgs/PosicionPatasGoma.png)
+
+Esta disposición no me ha dado ningún problema a lo largo de los meses que llevo utilizando el teclado.
+
 ## 15.- Funda
 
+La funda es totalmente opcional, pero que complementa muy bien el teclado en caso de que lo quieras llevar de un lado a otro. En mi caso, he adquirido una funda en AliExpress que se ajusta perfectamente al teclado.
 
-<!--
-Explicar las dos formas de montarlo:
-- La segura: Más dificil de soldar pero mejor resolución de errores
-- La tryhard: Menos dificil de soldar pero puede dar verdaderos dolores de cabeza en caso de error
--->
+Esta funda tiene un pequeño bolsillo donde llevar todos los cables y permite cortar la gomaespuma para que se ajuste perfectamente al teclado:
 
-🚧 ...
+![Funda](./imgs/Funda1.png)
+![Funda](./imgs/Funda2.png)
 
-# Programación (QMK)
+# Firmware (QMK)
 
-> ℹ️ Esta sección explicará de forma muy sencilla como hacer tu propio firmware y ejecutarlo en tu teclado.
+El firmware es el software que se ejecuta en el teclado. En este caso, el firmware que utilizaremos será QMK, que es el firmware más utilizado en el mundo de los teclados mecánicos.
+
+Hay dos formas principales de programar el teclado:
+- **Sin programación**: Utilizando el configurador de QMK (es más limitado)
+- **Con programación**: Utilizando el código fuente de QMK o alguno de sus derivados (no tiene límites)
 
 ## Sin programación
 
