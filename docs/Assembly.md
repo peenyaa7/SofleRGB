@@ -367,7 +367,7 @@ Antes de continuar con el montaje, es muy recomendable verificar que todo está 
 
 🚧 ...
 
-Si todo funciona correctamente, podemos continuar con el montaje. Si algo no funciona correctamente, recomiendo revisar el apartado [Resolución de problemas](#resolución-de-problemas).
+Si todo funciona correctamente, podemos continuar con el montaje. Si algo no funciona correctamente, recomiendo revisar el archivo '[Resolución de problemas](../docs/Troubleshotting.md)'.
 
 ### 11.- Encoders
 
