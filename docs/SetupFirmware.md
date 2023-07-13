@@ -6,10 +6,10 @@ Hay dos formas principales de programar el teclado:
 - **Sin programación**: Utilizando el configurador de QMK (es más limitado)
 - **Con programación**: Utilizando el código fuente de QMK o alguno de sus derivados (no tiene límites)
 
-## Sin programación
+### Sin programación
 
 🚧 ...
 
-## Con programación
+### Con programación
 
 🚧 ...

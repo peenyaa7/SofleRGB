@@ -16,11 +16,13 @@ Durante el proceso iré adjuntando diferentes links que son de gran utilidad y q
 
 Esta guía está dividida en pequeños archivos Markdown, para que sea más fácil de leer y de mantener. A continuación dejo una pequeña lista de los archivos que hay:
 
-- [Listado de componentes utilizados](./docs/Components.md)
-- [Guía de montaje](./docs/Assembly.md)
-- [Configuración y compilación del firmware (QMK)](./docs/SetupFirmware.md)
-- [Personalización de la pantalla OLED](./docs/CustomOLED.md)
-- [Resolución de problemas más comunes](./docs/Troubleshotting.md)
+| Guía | Link |
+| --- | --- |
+| Listado de componentes utilizados | <a href="./docs/Components.md"><img src="https://img.shields.io/badge/Link-Components-blue" /></a> |
+| Guía de montaje | <a href="./docs/Assembly.md"><img src="https://img.shields.io/badge/Link-Assembly-blue" /></a> |
+| Configuración y compilación del firmware (QMK) | <a href="./docs/SetupFirmware.md"><img src="https://img.shields.io/badge/Link-Setup%20Firmware-blue" /></a> |
+| Personalización de la pantalla OLED | <a href="./docs/CustomOLED.md"><img src="https://img.shields.io/badge/Link-Custom%20OLED-blue" /></a> |
+| Resolución de problemas más comunes | <a href="./docs/Troubleshotting.md"><img src="https://img.shields.io/badge/Link-Troubleshotting-blue" /></a> |
 
 ## Enlaces y recursos externos
 
