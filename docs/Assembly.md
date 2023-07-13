@@ -68,19 +68,45 @@ Los consejos que voy a dejar son muy obvios, pero no está de más recordarlos. 
 
 - **Investiga**: Antes de comenzar a hacer algo, no dudes en investigar. De nuevo, si no estás seguro de algo, no lo hagas.
 
+### Conceptos utilizados en esta guía
+
+![Silkscreen vs Pad](../imgs/SilkscreenVSPad.png)
+
+- **Pads**: Son los puntos de soldadura de la PCB.
+- **Silk screen**: Es la marca o rotulo que aparece en la PCB y que nos indica la posición correcta de los componentes.
+
+---
+
+![Pin Header vs Socket Header](../imgs/PinHeaderVSSocketHeader.png)
+
+- **Socket Header**: Es el componente que comunmente está soldado a la PCB y nos permite hacer que otro componente sea intercambiable. En este caso, el Socket Header nos permite conectar el promicro a la PCB sin tener que soldarlo. Esto nos permite poder cambiar el promicro en caso de que se estropee sin tener que desoldar nada.
+- **Pin Header**: Es el componente que comunmente está soldado a un componente y nos permite conectarlo al Socket Header de la PCB.
+
+---
+
+![Parte superior vs Parte inferior](../imgs/ParteInferioVSParteSuperior.png)
+
+- **Parte superior de la PCB**: Es cara de la PCB que **no** está en "contacto" con la mesa cuando tenemos el teclado montado. Sobre esta cara se encuentran los componentes que se ven desde arriba (pantalla OLED, encoders, etc.).
+- **Parte inferior de la PCB**: Es cara de la PCB que **sí** está en "contacto" con la mesa cuando tenemos el teclado montado. Sobre esta cara se encuentran los componentes que no se ven desde arriba (diodos, LEDs, etc.).
+
+
 ---
 
 ## Proceso
 
 ### 1.- Diodos
 
+Los diodos son pequeños componentes que permiten el paso de la corriente en un solo sentido. En los teclados, los diodos se utilizan para evitar el efecto ghosting (que se pulsen varias teclas a la vez y el teclado no lo detecte correctamente).
+
 ![Componente: Diodo](../imgs/Diode_1.jpg)
 
-Los diodos van soldados en la parte inferior de cada parte (la parte que está mirando a la mesa). Hay que tener en cuenta que los diodos tienen una posición correcta, ya que si se colocan al revés, no funcionarán correctamente. En la siguiente imagen se puede ver la posición correcta de los diodos:
+Los diodos van soldados en la parte inferior de las PCBs. Hay que tener en cuenta que los diodos tienen una posición correcta, ya que si se colocan al revés, no funcionarán correctamente. En cada diodo suele haber una pequeña marca que indica el cátodo del diodo; en la siguiente imagen se puede ver la posición correcta de los diodos:
+
+![Esquema eléctrico del diodo](../imgs/EsquemaDiodo.jpg)
 
 En la placa, en cada posición de diodo, hay una pequeña marca que indica la posición correcta del diodo:
 
-<!-- TODO: Foto de la placa con las marcas de los diodos -->
+![Silk screen de los diodos](../imgs/SilkscreenDiodo.png)
 
 En la guía oficial aparece que son necesarios 58 diodos, pero en mi caso he utilizado 60 diodos (30 en cada mitad), no se si esto es un error de la guía oficial.
 
@@ -88,9 +114,9 @@ Cómo consejo, recomiendo separar 30 diodos por mitad antes de comenzar a soldar
 
 Los diodos son muy sencillos de soldar. El proceso es el siguiente:
 
-1. Aplicar soldadura en uno de los pines del diodo
-2. Soldar el diodo únicamente con el pin que hemos soldado (lo más recto posible)
-3. Aplicar soldadura en el otro pin del diodo
+1. Aplicar soldadura en un pad de la PCB
+2. Soldar el diodo únicamente con el pad que hemos soldado (lo más recto posible)
+3. Aplicar soldadura en el otro pad de la PCB
 
 
 🚧 ...
@@ -111,7 +137,7 @@ El Sofle RGB tiene 3 "tipos de LEDs":
 
 - **LEDs underglow**: Hay 6 por cada mitad. Se situan en la parte inferior de la PCB. Tienen un montaje superficial, lo que hace más complicado el proceso de soldadura.
 
-- **LEDs backlight**: Hay 29 por cada mitad. Se situa en los huecos de la PCB, justo debajo de cada switch. Tienen un montaje incrustado, lo que facilita el proceso de soldadura.
+- **LEDs backlight**: Hay 29 por cada mitad. Se situa en los huecos de la PCB, justo debajo de cada switch. Tienen un montaje incrustado, lo que facilita el proceso de soldadura. Estos LED también son conocidos como *in-switch LEDs* o *per-key LEDs*.
 
 > ℹ️ En la guía oficial aparece que son necesarios 58 LEDs, pero en mi caso he utilizado 60 LEDs (30 en cada mitad), no se si esto es un error de la guía oficial.
 
@@ -123,10 +149,11 @@ Este apartado lo considero muy importante, ya que es muy fácil cometer errores 
 A tener en cuenta:
 
 - Es muy importante verificar, antes de soldar un LED, que este se encuentra en la posición correcta. Créeme, es muy fácil confundirse pensar que un LED está en la posición correcta cuando en realidad no lo está.
-- Los LEDs son muy sensibles a la temperatura, es muy fácil quemarlos si no se tiene cuidado (una temperatura de 240/260ºC es sufuciente)
+- Los LEDs son muy sensibles a la temperatura, es muy fácil quemarlos si no se tiene cuidado (una temperatura de 240/260ºC es suficiente)
 - En ocasiones, un LED puede llegar con dos esquinas rotas y confundir dicha esquina con la muesca del LED. Es recomendable no utilizar este tipo de LEDs si tenemos LEDs de sobra.
 
 > 🚨 **Importante**: La marca de la PCB (silk screen) se refiere al pin DOUT del LED. No tiene por qué coincidir con la muesca del LED (de hecho, no coincide en mi caso).
+> ![Silk screen de los LEDs](../imgs/SilkscreenLED.png)
 
 #### Proceso de soldadura (backlight/per-key/in-switch)
 
@@ -134,22 +161,22 @@ Estos LEDs son los que están situados justo debajo de cada switch y son los que
 
 El proceso de soldadura es el siguiente:
 
-1. Encajar el LED en el hueco de la tecla (aseguarse de que el LED está en la posición correcta)
+1. En la **parte inferior** de la PCB, encajar el LED en el hueco de la tecla (aseguarse de que el LED está en la posición correcta)
 
-2. Aplicar suficiente soldadura en uno de los pads de la PCB y acto seguido, arrastrar la punta del soldador desde el pad con el estaño hasta el LED (sin soltar la punta del soldador).
+2. Aplicar suficiente soldadura en uno de los pads de la PCB y acto seguido, arrastrar la punta del soldador desde el pad con el estaño hasta el LED (sin soltar la punta del soldador). De esta forma "arrastramos" el estaño desde el pad hasta el LED, haciendo como una especie de gota.
 
 3. Pasar al siguiente LED y repetir el proceso. Es recomendable que solo hagamos un pad de cada LED, ya que si hacemos dos pads a la vez, es muy probable que se nos queme el LED. Una vez tengamos el primer pad de cada LED, podemos hacer el segundo pad de cada LED (en el mismo orden).
 
 #### Proceso de soldadura (underglow)
 
-Estos LEDs son los que están situados en la parte inferior de la PCB y son los que iluminan el teclado por debajo. Estos LEDs son los más difíciles de soldar, ya que van soldador en la superficie inferior de la PCB y hay que sujetarlos con una pinza.
+Estos LEDs son los que están situados en la parte inferior de la PCB y son los que iluminan el teclado por debajo. Estos LEDs son los más difíciles de soldar, ya que van soldados de forma superficial en la **parte inferior** de la PCB y hay que sujetarlos con una pinza.
 
 El proceso de soldadura es el siguiente:
 
-1. Soldar uno de los pads de la PCB
+1. En la **parte inferior** de la PCB, soldar uno de los pads de la PCB
 2. Sujetar el LED con una pinza en la posición correcta (asegurarse de que las demás patas del LED coinciden con los demás pads de la PCB)
 3. Volver a aplicar calor en el pad con estaño de la PCB y unir el LED a la PCB
-4. Repetir el proceso para los demás LEDs (soldar solo un pad de cada LED)
+4. Repetir el proceso para los demás LEDs (soldar solo un pad de cada LED para no sobrecalentar el LED)
 5. Una vez tengamos todos los pads de los LEDs soldados, volver a soldar los demás pads de los LEDs (en el mismo orden)
 
 > ℹ️ **Pro tip**
@@ -189,7 +216,11 @@ A continuación, dejo una tabla con las conexiones que se deben hacer en cada un
 | ✅ | ✅ | ❌ | 2-3 | 2-3 | --- | |
 | ✅ | ✅ | ✅ | 2-3 | 2-3 | 1-2 | |
 
-En mi caso particular, he decidido que **no** quiero LEDs indicadores, quiero **si** LEDs underglow y **si** quiero LEDs backlight (configuración marcada con una flecha en la tabla anterior). Por lo tanto, he soldado los pines **1-2 de J6**, los pines **2-3 de J4** y los **pines 2-3 de J5** (tal y como se pueden ver en la foto de arriba).
+En mi caso particular, he decidido que **no** quiero LEDs indicadores, **si** quiero LEDs underglow y **si** quiero LEDs backlight (configuración marcada con una flecha en la tabla anterior). Por lo tanto, he soldado los pines **1-2 de J6**, los pines **2-3 de J4** y los **pines 2-3 de J5**, tal y como se pueden ver en la siguiente imagen:
+
+![Puentes LEDs](../imgs/PuentesLEDs2.png)
+
+**En la foto se ven los puentes fotografiados desde la parte superior, pero los puentes están soldados en la parte inferior de la PCB.**
 
 > ℹ️ **Pro tip**
 >
@@ -204,7 +235,7 @@ Son muy fáciles de soldar, ya que no se trata de un componente electrónico y t
 
 El proceso de soldadura de cada Hotswap es el siguiente:
 
-1. Aplicar estaño a un pad de la PCB
+1. En la **parte inferior** de la PCB, aplicar estaño a un pad de la PCB
 2. Colocar el Hotswap en la posición correcta (asegurarse de que las demás patas del Hotswap coinciden con los demás pads de la PCB)
 3. Apretar con la punta del soldador en el pad que hemos aplicado estaño hasta que se funda con el estaño de la PCB
 4. Aplicar suficiente estaño en la otra pata del hotswap, hasta que el estaño fije la patita del hotswap en la PCB
@@ -214,8 +245,6 @@ El proceso de soldadura de cada Hotswap es el siguiente:
 > A continuación, un pequeño esquema de como colocar el componente y para que sirve cada agujero:
 >
 > ![Colocación Hotswap](../imgs/ColocacionHotswap.jpg)
-
-<!-- Foto del pad -->
 
 ### 4.- Reset
 
@@ -383,8 +412,6 @@ El proceso de soldadura de cada encoder es el siguiente:
 2. Colocar el encoder en la posición correcta, es decir, verificar que todas las patas del encoder se sitúan en los pads correctos de la PCB.
 3. Desde la parte inferior de la PCB, soldar todas las patas del encoder
 
-<!-- Foto del pad -->
-
 ### 12.- Plate superior y Switches
 
 El siguiente paso es colocar la plate superior en la PCB junto a los switches.
@@ -415,7 +442,21 @@ La posición de las patas de goma es totalmente a gusto del consumidor, pero rec
 
 Esta disposición no me ha dado ningún problema a lo largo de los meses que llevo utilizando el teclado.
 
-### 15.- Funda
+### 15.- Keycaps
+
+Una vez tenemos ya todo el teclado montado, solo nos queda colocar los keycaps. En mi caso, he adquirido unos keycaps en AliExpress que se ajustan perfectamente al teclado.
+
+![Keycaps](../imgs/Keycaps.png)
+
+Recomiendo verificar que el set de keycaps que vayamos a adquirir tenga suficientes teclas (y con el tamaño correcto) para nuestro teclado.
+
+### 16.- Cable USB-C
+
+El cable USB-C es el que nos permite conectar el teclado al ordenador. Puedes utilizar cualquier tipo de cable USB-C. En mi caso he adquirido un cable USB-C magnético en AliExpress que se ajusta perfectamente al teclado. El sistema magnético es muy cómodo, ya que permite conectar y desconectar el cable sin tener que forzar el conector. Además, protege el conector del teclado en caso de tirón accidental.
+
+![Cable USB-C](../imgs/CableUSB.gif)
+
+### 17.- Funda
 
 La funda es totalmente opcional, pero que complementa muy bien el teclado en caso de que lo quieras llevar de un lado a otro. En mi caso, he adquirido una funda en AliExpress que se ajusta perfectamente al teclado.
 
